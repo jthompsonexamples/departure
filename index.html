@@ -35,42 +35,32 @@
                 radial-gradient(circle at center, #0d121a 0%, #05070a 100%),
                 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0Ni4xODgiIHZpZXdCb3g9IjAgMCA0MCA0Ni4xODgiPjxwYXRoIGQ9Ik0yMCAwbDIwIDExLjU0NnYyMy4wOTJMMjAgNDYuMTg4IDAgMzQuNjM4di0yMy4wOTJMMjAgMHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc0QzM2NSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDMiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==');
             min-height: 100vh;
-            display: flex;
-            justify-content: center; /* Centers container on wide screens */
         }
 
         .container {
             width: 100%;
             max-width: 800px;
+            margin: 0 auto;
             padding: 40px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Crucial for centering children */
         }
 
         header {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Force centers the H1 and Subtitle */
             text-align: center;
             margin-bottom: 40px;
         }
 
         h1 {
-            width: 100%;
             font-family: var(--font-tech);
-            font-size: clamp(1.6rem, 8vw, 2.8rem);
+            font-size: clamp(1.5rem, 8vw, 2.8rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #fff;
-            text-shadow: 0 0 12px var(--accent-glow);
-            line-height: 1.2;
+            text-shadow: 0 0 15px var(--accent-glow);
+            line-height: 1.1;
         }
 
         .subtitle {
-            width: 100%;
             font-family: var(--font-tech);
             font-size: clamp(0.7rem, 3vw, 0.85rem);
             letter-spacing: 4px;
@@ -80,7 +70,6 @@
         }
 
         #counter-grid {
-            width: 100%;
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
@@ -98,18 +87,20 @@
 
         .card-meta {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            gap: 15px;
+            gap: 10px;
         }
 
+        /* Mobile specific header adjustment */
         @media (max-width: 480px) {
             .card-meta {
                 flex-direction: column;
-                align-items: stretch; /* Makes input full width on mobile */
-                text-align: center;
+                align-items: flex-start;
             }
+            .date-input { width: 100%; }
         }
 
         .label {
@@ -128,33 +119,33 @@
             padding: 8px;
             border-radius: 4px;
             font-size: 0.9rem;
-            text-align: center;
         }
 
+        /* Responsive Grid for the numbers */
         .display-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
         }
 
+        /* SWITCH TO 2x2 ON MOBILE */
         @media (max-width: 550px) {
             .display-row {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                gap: 20px;
             }
         }
 
         .segment {
             text-align: center;
             background: rgba(255,255,255,0.02);
-            padding: 12px 5px;
+            padding: 10px 5px;
             border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.03);
         }
 
         .value {
             font-family: var(--font-tech);
-            font-size: clamp(1.8rem, 10vw, 3.2rem);
+            font-size: clamp(2rem, 10vw, 3.5rem);
             font-weight: 700;
             color: var(--accent-green);
             text-shadow: 0 0 10px var(--accent-glow);
@@ -166,11 +157,11 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-dim);
-            margin-top: 6px;
+            margin-top: 5px;
         }
 
         .btn-add {
-            margin-top: 30px;
+            margin-top: 25px;
             width: 100%;
             padding: 18px;
             background: transparent;
@@ -182,12 +173,6 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-add:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
         }
 
         .btn-add:active {
@@ -205,7 +190,7 @@
 
         <div id="counter-grid"></div>
 
-        <button class="btn-add" onclick="addNewCounter()">+ Add Operational Phase</button>
+        <button class="btn-add" onclick="addNewCounter()">+ Add New Phase</button>
     </div>
 
     <script>
@@ -252,7 +237,7 @@
 
         function addNewCounter() {
             const newId = Date.now();
-            createCard({ id: newId, label: "Custom Phase", date: "2026-12-31T23:59" });
+            createCard({ id: newId, label: "New Phase", date: "2026-12-31T23:59" });
         }
 
         function updateAll() {
